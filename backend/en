@@ -1,0 +1,4 @@
+DATABASE_URL = postgresql://edem_admin:t5qpC3yhRrBli9GKfTJEjsbaDQB1L4fx@dpg-d5ee177pm1nc73a4r690-a/edem_tutorials
+SECRET_KEY =django-insecure-a7a4kun70)t6pve2ccjv^ncz=#ot7##)t!lrr$hhgsrnl($i9u
+DEBUG =False
+ALLOWED_HOSTS =*

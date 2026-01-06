@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="alert alert-info text-center">
+                <strong>Testing Mode:</strong> Your SMS PIN is <span class="badge bg-dark">{{ debug_pin }}</span>
+            </div>
+
+            <div class="card shadow border-0">
+                <div class="card-body text-center p-4">
+                    <h3>Confirm PIN</h3>
+                    <p class="text-muted">Enter the 4-digit code to activate your enrollment.</p>
+                    <input type="text" id="userPin" maxlength="4" class="form-control form-control-lg text-center mb-4" placeholder="0000">
+                    
+                    <form action="{% url 'finalize_enrollment' enrollment.id %}" method="POST">
+                        {% csrf_token %}
+                        <button id="submitBtn" type="submit" class="btn btn-primary w-100 btn-lg" disabled>Verify & Get Receipt</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('userPin').addEventListener('input', function() {
+        if (this.value === "{{ debug_pin }}") {
+            document.getElementById('submitBtn').disabled = false;
+            this.classList.add('is-valid');
+        } else {
+            document.getElementById('submitBtn').disabled = true;
+            this.classList.remove('is-valid');
+        }
+    });
+</script>
+{% endblock %}

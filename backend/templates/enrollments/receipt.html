@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card mx-auto shadow" style="max-width: 600px;" id="printableReceipt">
+        <div class="card-body p-5">
+            <div class="text-center mb-4">
+                <h2>EDEM TUTORIALS</h2>
+                <p class="text-muted">Official Payment Receipt</p>
+            </div>
+            <hr>
+            <div class="row mb-3">
+                <div class="col-6"><strong>Student:</strong></div>
+                <div class="col-6 text-end">{{ enrollment.user.get_full_name }}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6"><strong>Index Number:</strong></div>
+                <div class="col-6 text-end">{{ enrollment.user.index_number }}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6"><strong>Course:</strong></div>
+                <div class="col-6 text-end">{{ enrollment.course.title }}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6"><strong>Date:</strong></div>
+                <div class="col-6 text-end">{{ enrollment.enrolled_at|date:"M d, Y" }}</div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="text-success fw-bold">STATUS: PAID & ENROLLED</p>
+                <button onclick="window.print()" class="btn btn-outline-dark d-print-none">Download PDF</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @media print {
+        .d-print-none, .navbar { display: none !important; }
+        body { background: white !important; }
+        .card { border: none !important; shadow: none !important; }
+    }
+</style>
+{% endblock %}
