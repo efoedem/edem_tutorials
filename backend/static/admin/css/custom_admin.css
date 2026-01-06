@@ -1,0 +1,39 @@
+/* The Slicer Button Styling */
+#sidebar-slicer {
+    position: fixed;
+    top: 25%;
+    right: 50px; /* Positioned at the edge of the filter box */
+    z-index: 1000;
+    background: #417690;
+    color: white;
+    padding: 5px 5px;
+    cursor: pointer;
+    border-radius: 5px 0 0 5px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+#sidebar-slicer:hover {
+    background: #264b5d;
+}
+
+/* Slide the Filter Sidebar out of view */
+#changelist-filter {
+    transition: transform 0.3s ease, margin-right 0.3s ease;
+    transform: translateX(0);
+}
+
+#changelist-filter.sidebar-hidden {
+    transform: translateX(100%); /* Slide horizontally to the right */
+    margin-right: -240px;
+}
+
+/* Expand the main table area when sidebar is hidden */
+#changelist.full-width {
+    margin-right: 0 !important;
+    width: 100% !important;
+}
+
+#changelist {
+    transition: margin-right 0.3s ease, width 0.3s ease;
+}
