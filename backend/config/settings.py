@@ -54,8 +54,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this line here!
-    # ... keep the rest of your middleware ...
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this right here!
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    # ... the rest of your middleware
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -150,4 +152,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# This line helps WhiteNoise compress files for speed
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
