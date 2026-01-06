@@ -2,9 +2,12 @@
 # exit on error
 set -o errexit
 
+# Install dependencies
+pip install --upgrade pip
 pip install -r requirements.txt
 
-python manage.py collectstatic --noinput
+# Run migrations
 python manage.py migrate
-# This will create a superuser automatically if it doesn't exist
-python manage.py createsuperuser --noinput || true
+
+# Collect static files
+python manage.py collectstatic --no-input
