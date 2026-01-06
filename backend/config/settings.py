@@ -138,6 +138,9 @@ AUTH_USER_MODEL = 'users.User'
 
 
 
+# Find the ALLOWED_HOSTS line and change it to this:
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
