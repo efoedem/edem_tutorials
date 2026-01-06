@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* CSS to hide buttons when printing or saving as PDF */
+    @media print {
+        .no-print {
+            display: none !important;
+        }
+        body {
+            background-color: white !important;
+        }
+        #printableReceipt {
+            padding: 20px !important;
+            border: none !important;
+        }
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div id="printableReceipt" style="background-color: #fce1b6; padding: 50px; border-radius: 10px; border: 1px solid #e0c59a;">
+
+                <div class="text-center mb-4">
+                    <h1 style="font-weight: bold; font-size: 40px; margin-bottom: 5px;">EDEM TUTORIALS</h1>
+                    <p style="color: #666; letter-spacing: 1px;">OFFICIAL ENROLLMENT RECEIPT</p>
+                </div>
+
+                <hr style="border-top: 1px solid #000; opacity: 0.2; margin-bottom: 30px;">
+
+                <div style="font-size: 18px; line-height: 2.2;">
+                    <div class="row">
+                        <div class="col-6 text-muted text-uppercase" style="font-size: 14px;">Student Name</div>
+                        <div class="col-6 text-end fw-bold">{{ enrollment.user.get_full_name|upper|default:enrollment.user.username }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-muted text-uppercase" style="font-size: 14px;">Index Number</div>
+                        <div class="col-6 text-end fw-bold">{{ enrollment.user.index_number|default:"N/A" }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-muted text-uppercase" style="font-size: 14px;">Course Enrolled</div>
+                        <div class="col-6 text-end fw-bold text-uppercase">{{ enrollment.course.title }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-muted text-uppercase" style="font-size: 14px;">Date of Issue</div>
+                        <div class="col-6 text-end fw-bold">{{ enrollment.enrolled_at|date:"M d, Y" }}</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-6 text-muted text-uppercase" style="font-size: 14px;">Transaction ID</div>
+                        <div class="col-6 text-end fw-bold text-primary">
+                            {{ enrollment.transaction_id|default:"VERIFICATION PENDING" }}
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="border-top: 1px solid #000; opacity: 0.2; margin-top: 30px; margin-bottom: 30px;">
+
+                <div class="text-center">
+                    <h3 style="color: #198754; font-weight: bold; letter-spacing: 2px; border: 2px solid #198754; display: inline-block; padding: 10px 20px;">
+                        STATUS: PAID & VERIFIED
+                    </h3>
+
+                    <div class="mt-4 no-print">
+                        <button onclick="window.print();" class="btn btn-dark px-5">Download / Print Receipt</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-3 no-print">
+                <a href="{% url 'course_list' %}" class="text-muted text-decoration-none">← Back to Courses</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
