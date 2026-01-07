@@ -99,5 +99,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 AUTH_USER_MODEL = 'users.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/courses/'
-LOGOUT_REDIRECT_URL = '/courses/'
+# Where to go after a successful login
+LOGIN_REDIRECT_URL = 'course_list'
+
+# Where to go after logging out
+LOGOUT_REDIRECT_URL = 'course_list'
+
+# This ensures Django knows where to look for your login page
+LOGIN_URL = 'login'
